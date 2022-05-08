@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+/* Importing "Inter" font*/
+@import url('https://fonts.google.com/specimen/Inter#standard-styles');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* NavBar styling */
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* "EGENERATE" title styling */
+.nav-container {
+    font-family: 'Inter', sans-serif;
+    font-size: 28.6144px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 35px;
+    text-align: center;
+    color: #FFFFFF;
+    position: relative;
+}
+
+.nav-container a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.nav-container ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 50px;
+}
+
+.nav-container {
+    background: #8E81DD;
+}
+
+.nav-items li{
+    padding: 0px 50px;
+}
+
