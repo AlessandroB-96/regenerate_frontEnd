@@ -6,6 +6,11 @@
     margin: 0;
 }
 
+body {
+    background: url('./assets/clinic_bgImage.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
 /* NavBar styling */
 
 nav {
@@ -58,6 +63,7 @@ nav {
     display: flex;
     align-items: center;
 }
+
 
 
 /* Mobile resolution*/
