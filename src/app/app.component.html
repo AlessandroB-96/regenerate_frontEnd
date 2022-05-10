@@ -8,7 +8,7 @@
         <div class="wrapper ">
             <nav>
                 <div class="logo">
-                    <a href="#">
+                    <a id="home-link" routerLink="/home" routerLinkActive="home">
                         <img src="./assets/logoRegenerate.svg" alt="Regenerate logo">
                         EGENERATE
                     </a>
@@ -16,27 +16,28 @@
 
                 <ul class="nav-items">
                     <li>
-                        <a href="#">
+                        <a id="reservation-link" routerLink="/reservation" routerLinkActive="reservation">
                             <img src="./assets/penIcon.svg" alt="White pencil icon">
-                            Prenotazioni
+                            <p>Prenotazioni</p>
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <img src="./assets/medalIcon.svg" alt="White medal icon">
-                            I nostri medici
+                            <p>I nostri medici</p>
+                            
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <img src="./assets/usersIcon.svg" alt="White people icon">
-                            Chi siamo
+                            <p>Chi siamo</p>
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <img src="./assets/phoneIcon.svg" alt="White phone icon">
-                            Contatti
+                            <p>Contatti</p>
                         </a>
                     </li>
                 </ul>
@@ -63,3 +64,9 @@
     </div>
 
 </body>
+
+<div class="reservation-component">
+    <router-outlet>
+    </router-outlet>
+</div>
+

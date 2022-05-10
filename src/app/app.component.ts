@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Regenerate';
+
+  ngAfterViewInit(){
+    document.body.classList.add('home');
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove('home');
+  }
+
 }
+

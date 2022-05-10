@@ -6,10 +6,18 @@
     margin: 0;
 }
 
-body {
+body.home{
     background: url('./assets/clinic_bgImage.jpg') no-repeat center center fixed;
     background-size: cover;
+    transition: 300ms;
 }
+/* When i click on Prenotazioni, body tag will acquire "reservation" class, that change its background image*/
+body.reservation{
+    background: url('./assets/clinic_reservationImage.jpg') no-repeat center center fixed;
+    background-size: cover;
+    transition: 300ms;
+}
+
 
 /* NavBar styling */
 
@@ -29,6 +37,8 @@ nav {
     line-height: 35px;
     text-align: center;
     color: #ffffff;
+    position: fixed;
+    width: 100vw;
 }
 
 .nav-container a{
@@ -64,6 +74,12 @@ nav {
     transition: 300ms;
     transform: translateY(-8px);
 }
+
+.nav-items p{
+    margin-top: 20px;
+}
+
+
 
 .logo a{
     margin-left: 30px;
@@ -105,6 +121,9 @@ nav {
       margin-right: 30px;
   }
 
+  .selected p{
+    color: #93FA91;
+  }
 
 
 /* Mobile resolution*/
