@@ -1,5 +1,7 @@
 # RegenerateFrontEnd
 
+This is a project for personal use, the purpose is to test the functionality of the Angular framework. For this reason, proposals for collaborations from people outside the development team (consisting of 3 people including me) will NOT be accepted.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.2.
 
 ## Development server
