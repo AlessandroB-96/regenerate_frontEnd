@@ -15,10 +15,12 @@ export class ReservationComponent implements OnInit {
   ngAfterViewInit(){
     document.body.classList.add('reservation');
     document.getElementById('reservation-link')?.classList.add('selected');
+    document.getElementById('reservation-link')?.classList.remove('animation');
   }
 
   ngOnDestroy() {
     document.body.classList.remove('reservation');
     document.getElementById('reservation-link')?.classList.remove('selected');
+    document.getElementById('reservation-link')?.classList.add('animation');
   }
 }

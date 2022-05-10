@@ -18,6 +18,23 @@ body.reservation{
     transition: 300ms;
 }
 
+body.doctors{
+    background: url('./assets/clinic_ourDoctors.jpg') no-repeat center center fixed;
+    background-size: cover;
+    transition: 300ms;
+}
+
+body.info{
+    background: url('./assets//clinic_whoWeAre.jpg') no-repeat center center fixed;
+    background-size: cover;
+    transition: 300ms;
+}
+
+body.contacts{
+    background: url('./assets/clinic-contacts.jpg') no-repeat center center fixed;
+    background-size: cover;
+    transition: 300ms;
+}
 
 /* NavBar styling */
 
@@ -69,7 +86,7 @@ nav {
     transition: 300ms;
 }
 
-.nav-items a:hover{
+.animation:hover {
     color: #93FA91;
     transition: 300ms;
     transform: translateY(-8px);
@@ -78,7 +95,6 @@ nav {
 .nav-items p{
     margin-top: 20px;
 }
-
 
 
 .logo a{
