@@ -122,10 +122,39 @@
 
       /* Side List */
 
-       .side-list {
+      .side-list {
         position: absolute;
-        width: 576px;
+        left: 904px;
+        top: 278px;
+
+        background: #FFFFFF;
+        border-radius: 24px;
+      }
+
+      .dropdown-item.active,
+      .dropdown-item:active {
+        color: #fff;
+        text-decoration: none;
+        background-color: #8E81DD;
+        border-radius: 24px;
+      }
+
+      .dropdown-menu-macos {
+        display: grid;
+        gap: 0.25rem;
+        padding: 0.5rem;
+
+        background: #FFFFFF;
+        border-radius: 24px;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        width: 438px;
         height: 266px;
-        left: 766px;
-        top: 340px;
+      }
+
+      .mx-0 {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
       }
