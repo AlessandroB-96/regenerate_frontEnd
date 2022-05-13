@@ -1,48 +1,65 @@
-<!-- Bootstrap 5.0.2 import -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!DOCTYPE html>
+<html lang="en">
+<!-- Bootstrap 5.1.3 import -->
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
 
 <body>
-
     <!-- NavBar -->
-    <div class="nav-container">
-        <div class="wrapper ">
-            <nav>
-                <div class="logo">
-                    <a id="home-link" routerLink="/home" routerLinkActive="home">
-                        <img src="./assets/logoRegenerate.svg" alt="Regenerate logo">
-                        EGENERATE
-                    </a>
-                </div>
+    <nav class="navbar navbar-light navbar-expand-lg">
+        <div class="container-fluid nav-container">
+            <div class="logo">
+                <a class="navbar-brand" href="#">
+                    <img src="./assets/logoRegenerate.svg" alt="Regenerate logo">
+                    <p>EGENERATE</p>
+                </a>
+            </div>
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <ul class="nav-items">
-                    <li>
-                        <a class="animation" id="reservation-link" routerLink="/reservation" routerLinkActive="reservation">
+            <div class="space-between collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav nav-items">
+                    <li class="nav-item">
+                        <a class="animation" id="reservation-link" routerLink="/reservation"
+                            routerLinkActive="reservation">
                             <img src="./assets/penIcon.svg" alt="White pencil icon">
                             <p>Prenotazioni</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item">
                         <a class="animation" id="doctors-link" routerLink="/doctors" routerLinkActive="doctors">
                             <img src="./assets/medalIcon.svg" alt="White medal icon">
                             <p>I nostri medici</p>
-                            
+
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item">
                         <a class="animation" id="info-link" routerLink="/info" routerLinkActive="info">
                             <img src="./assets/usersIcon.svg" alt="White people icon">
                             <p>Chi siamo</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item">
                         <a class="animation" id="contacts-link" routerLink="/contacts" routerLinkActive="contacts">
                             <img src="./assets/phoneIcon.svg" alt="White phone icon">
                             <p>Contatti</p>
                         </a>
                     </li>
                 </ul>
-            </nav>
+            </div>
         </div>
+    </nav>
+
+
+    <!-- Here will be rendered the routered component when clicked on its link -->
+    <div class="router-component">
+        <router-outlet>
+        </router-outlet>
     </div>
 
     <!-- Footer -->
@@ -63,10 +80,12 @@
         </ul>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
 </body>
 
-<div class="reservation-component">
-    <router-outlet>
-    </router-outlet>
-</div>
-
+</html>
