@@ -1,0 +1,131 @@
+      /*    calendar    */
+
+      .calendar {
+        position: absolute;
+        width: 491.59px;
+        height: 391px;
+        left: 76px;
+        top: 278px;
+
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 16.2241px;
+      }
+
+      body {
+        font-family: 'Source Sans Pro', sans-serif;
+      }
+
+      /* Month header */
+      .month {
+        padding: 40px 25px;
+        width: 100%;
+        background: #FFFFFF;
+        text-align: center;
+        border-radius: 16.2241px;
+      }
+
+      /* Month and year list */
+      .month div {
+        margin: 0;
+        padding: 0;
+      }
+
+      .month div {
+        color: black;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
+
+
+      .year {
+        margin: 0;
+        padding: 10px 0;
+      }
+
+      .year div {
+        color: black;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
+
+      /* Previous button inside month header */
+      .month .prev {
+        float: left;
+        padding-top: 10px;
+      }
+
+      /* Next button */
+      .month .next {
+        float: right;
+        padding-top: 10px;
+      }
+
+      /* Weekdays (Mon-Sun) */
+      .weekdays {
+        margin: 0;
+        padding: 10px 0;
+        background-color: #8E81DD;
+      }
+
+      .weekdays div {
+        display: inline-block;
+        width: 13.6%;
+        color: #FFFFFF;
+        text-align: center;
+      }
+
+
+      /* Days (1-31) */
+      .days {
+        padding: 10px 0;
+        background: #FFFFFF;
+        margin: 0;
+        border-radius: 16.2241px;
+      }
+
+      .days div {
+        list-style-type: none;
+        display: inline-block;
+        width: 13.6%;
+        text-align: center;
+        margin-bottom: 5px;
+        font-size: 20px;
+        color: rgb(0, 0, 0);
+        transition: background-color 0.2s;
+      }
+
+      /* Highlight the "current" day */
+      .days div .active {
+        padding: 5px;
+        background: #93FA91;
+        color: white !important
+      }
+
+      .previous-day,
+      .next-day {
+        opacity: 0.5;
+      }
+
+      .today {
+        background-color: #93FA91;
+        border-radius: 16.2241px;
+      }
+
+      .days div:hover:not(.today) {
+        background-color: #8faf8f;
+        border-radius: 16.2241px;
+      }
+
+
+      /* Side List */
+
+       .side-list {
+        position: absolute;
+        width: 576px;
+        height: 266px;
+        left: 766px;
+        top: 340px;
+      }
