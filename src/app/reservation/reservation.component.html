@@ -4,13 +4,13 @@
 
 <html>
 <!--- calendar --->
-<div class="calendar">
+<div class="calendar" id="calendar">
     
     <div class="month">
         <div class="prev" style="cursor: pointer;">&#10094;</div>
         <div class="next" style="cursor: pointer;">&#10095;</div>
         <div class="month-name"></div>
-        <div class="day"></div>
+        <div class="day" id="day"></div>
         <div class="year"></div>
     </div>
 
@@ -45,13 +45,13 @@
     </div>
 
     <div class="hour" style="cursor: pointer;" id="afternoonHours">
-        <div class="13.00" (click)="onClickHours('morningHour8')" id="morningHour8">13.00 </div>
-        <div class="13.30" (click)="onClickHours('morningHour9')" id="morningHour9">13.30</div>
-        <div class="14.00" (click)="onClickHours('morningHour10')" id="morningHour10">14.00</div>
-        <div class="14.30" (click)="onClickHours('morningHour11')" id="morningHour11">14.30</div>
-        <div class="15.00" (click)="onClickHours('morningHour12')" id="morningHour12">15.00</div>
-        <div class="15.30" (click)="onClickHours('morningHour13')" id="morningHour13">15.30</div>
-        <div class="16.00" (click)="onClickHours('morningHour14')" id="morningHour14">16.00</div>
+        <div class="13.00" (click)="onClickHours('afternoonHour1')" id="afternoonHour1">13.00 </div>
+        <div class="13.30" (click)="onClickHours('afternoonHour2')" id="afternoonHour2">13.30</div>
+        <div class="14.00" (click)="onClickHours('afternoonHour3')" id="afternoonHour3">14.00</div>
+        <div class="14.30" (click)="onClickHours('afternoonHour4')" id="afternoonHour4">14.30</div>
+        <div class="15.00" (click)="onClickHours('afternoonHour5')" id="afternoonHour5">15.00</div>
+        <div class="15.30" (click)="onClickHours('afternoonHour6')" id="afternoonHour6">15.30</div>
+        <div class="16.00" (click)="onClickHours('afternoonHour7')" id="afternoonHour7">16.00</div>
     </div>
 
 </div>
