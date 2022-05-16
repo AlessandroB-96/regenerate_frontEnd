@@ -49,4 +49,25 @@ export class ReservationComponent implements OnInit {
     document.getElementById('reservation-link')?.classList.remove('selected');
     document.getElementById('reservation-link')?.classList.add('animation');
   }
+
+  //Method that highligts hours clicked by the user in reservation component
+  public onClickHours(divId: string) {
+
+    if (!(document.getElementById('morningHours')?.classList.contains('alreadySelected'))) {
+        
+      if (!(document.getElementById(divId)?.classList.contains('selectedHour'))) {
+        document.getElementById(divId)?.classList.add('selectedHour');
+        document.getElementById('morningHours')?.classList.add('alreadySelected');
+      }
+
+    }
+
+    else if ((document.getElementById('morningHours')?.classList.contains('alreadySelected')) && (document.getElementById(divId)?.classList.contains('selectedHour'))) {
+      
+      document.getElementById('morningHours')?.classList.remove('alreadySelected');
+      document.getElementById(divId)?.classList.remove('selectedHour');
+
+    }
+  }
+
 }

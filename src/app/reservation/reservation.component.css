@@ -166,3 +166,8 @@
         margin-right: 0 !important;
         margin-left: 0 !important;
       }
+
+/* Class that will apply to clicked hours to show which hour the user has clicked and selected */
+      .selectedHour{
+        background-color: violet !important;
+      }
