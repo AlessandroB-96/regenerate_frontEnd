@@ -13,42 +13,10 @@ export class ReservationComponent implements OnInit {
   constructor() { }
 
   renderCalendar() {
-    // month and year
+    // days (month - day -year) 
     document.querySelector(".calendar .month-name")!.innerHTML = this.months[this.data.getMonth()];
     document.querySelector(".calendar .year")!.innerHTML = this.data.getFullYear().toString();
-
-    const monthDays = document.querySelector(".days");
-
-    const lastDay = new Date(this.data.getFullYear(), this.data.getMonth() + 1, 0).getDate();
-    //const prevLastDay = new Date(this.data.getFullYear(), this.data.getMonth(), 0).getDate();
-
-    //const firstDayIndex = this.data.getDate();
-    //const lastDayIndex = new Date(this.data.getFullYear(), this.data.getMonth() + 1, 0).getDay();
-
-    //const nextDays = 7 - lastDayIndex;
-    let days = "";
-
-
-    /*for (let j = firstDayIndex; j < 0; j++) {
-      days += `<div class="previous-day">${prevLastDay - j + 1}</div>`;
-    }*/
-
-    // to set days
-    for (let i = 1; i <= lastDay; i++) {
-      if (i === new Date().getDate() && this.data.getMonth() === new Date().getMonth()) {
-        days += `<div class="today">${i}</div>`;
-      }
-      else {
-        days += `<div>${i}</div>`;
-      }
-    }
-
-    /*for (let j = 1; j <= nextDays; j++) {
-      days += `<div class="next-day">${j}</div>`;
-    }*/
-
-    monthDays!.innerHTML = days;
-
+    document.querySelector(".calendar .day")!.innerHTML = this.data.getDate().toString();
   }
 
   ngOnInit(): void {
@@ -63,13 +31,13 @@ export class ReservationComponent implements OnInit {
     this.renderCalendar();
 
     document.querySelector('.prev')?.addEventListener('click', () => {
-      this.data.setMonth(this.data.getMonth() - 1);
+      this.data.setDate(this.data.getDate() - 1);
       this.renderCalendar();
 
     });
 
     document.querySelector('.next')?.addEventListener('click', () => {
-      this.data.setMonth(this.data.getMonth() + 1);
+      this.data.setDate(this.data.getDate() + 1);
       this.renderCalendar();
 
     });
