@@ -3,7 +3,7 @@
       .calendar {
         position: absolute;
         width: 491.59px;
-        height: 391px;
+        height: 351px;
         left: 76px;
         top: 278px;
 
@@ -18,7 +18,7 @@
 
       /* Month header */
       .month {
-        padding: 40px 25px;
+        padding: 20px 25px;
         width: 100%;
         background: #FFFFFF;
         text-align: center;
@@ -51,71 +51,79 @@
         letter-spacing: 3px;
       }
 
+      .day {
+        margin: 0;
+        padding: 10px 0;
+      }
+
+      .day div {
+        color: black;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
+
       /* Previous button inside month header */
       .month .prev {
         float: left;
-        padding-top: 10px;
+        padding-top: 25px;
       }
 
       /* Next button */
       .month .next {
         float: right;
-        padding-top: 10px;
+        padding-top: 25px;
       }
 
-      /* Weekdays (Mon-Sun) */
-      .weekdays {
+      /* bar */
+      .bar {
         margin: 0;
         padding: 10px 0;
         background-color: #8E81DD;
       }
 
-      .weekdays div {
+      .bar div {
+        margin-left: 3px;
         display: inline-block;
         width: 13.6%;
         color: #FFFFFF;
         text-align: center;
       }
 
-
-      /* Days (1-31) */
-      .days {
+      /* hours */
+      .hours {
         padding: 10px 0;
         background: #FFFFFF;
         margin: 0;
         border-radius: 16.2241px;
+
       }
 
-      .days div {
+      .hour div {
         list-style-type: none;
         display: inline-block;
         width: 13.6%;
         text-align: center;
-        margin-bottom: 5px;
+        margin-top: 15px;
+        margin-bottom: 20px;
+        margin-left: 3px;
         font-size: 20px;
         color: rgb(0, 0, 0);
+        background: #93FA91;
+        border-radius: 16.2241px;
         transition: background-color 0.2s;
       }
 
       /* Highlight the "current" day */
-      .days div .active {
+      .hour div .active {
         padding: 5px;
         background: #93FA91;
         color: white !important
       }
 
-      .previous-day,
-      .next-day {
-        opacity: 0.5;
-      }
 
-      .today {
-        background-color: #93FA91;
-        border-radius: 16.2241px;
-      }
-
-      .days div:hover:not(.today) {
-        background-color: #8faf8f;
+      .hour div:hover {
+        background-color: rgb(215, 179, 231);
         border-radius: 16.2241px;
       }
 
