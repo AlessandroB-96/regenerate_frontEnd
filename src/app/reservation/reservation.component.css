@@ -174,7 +174,7 @@
 
       /* left dropdown menu */
 
-      .dropdown-menu{
+      .dropdown-menu {
         border-radius: 16.2241px;
         padding: 20px 25px;
         font-size: 20px;
@@ -182,7 +182,7 @@
         text-align: center;
       }
 
-      .dropdown-item:hover{
+      .dropdown-item:hover {
         border-radius: 16.2241px;
         background: #e1dff1;
         border-color: #e1dff1;
@@ -202,25 +202,25 @@
         letter-spacing: 2px;
       }
 
-      .submit:hover{
+      .submit:hover {
         background: #25e921;
         border-color: #25e921;
       }
 
       /* disbled the button submit  */
-       .disabled{
+      .disabled {
         background: #71b364 !important;
         border-color: #71b364 !important;
       }
 
 
 
-/* Class that will apply to clicked hours to show which hour the user has clicked and selected */
-      .selectedHour{
+      /* Class that will apply to clicked hours to show which hour the user has clicked and selected */
+      .selectedHour {
         background-color: violet !important;
       }
 
-/* Class used to color dates that a user can NOT choose in reservation component, in the calendar */
+      /* Class used to color dates that a user can NOT choose in reservation component, in the calendar */
       .closeDay {
         background: rgb(255, 97, 97) !important;
         transition: 300ms;
