@@ -4,6 +4,8 @@ import { Department } from '../department';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Visit } from '../visit';
 import { VisitService } from '../visit.service';
+import { Doctor } from '../doctor';
+import { DoctorService } from '../doctor.service';
 
 @Component({
   selector: 'app-reservation',
@@ -17,19 +19,20 @@ export class ReservationComponent implements OnInit {
 
   public departments: Department[] = [];
   public visits: Visit[] = [];
+  public doctors: Doctor[] = [];
  //Department variables
   public nameDepartment : string | undefined;
 
 //Visit variables
   public idDepartment: Department | undefined;
 
-  constructor(private departmentService: DepartmentService, private visitService: VisitService) { }
+  constructor(private departmentService: DepartmentService, private visitService: VisitService, private doctorService: DoctorService) { }
 
   ngOnInit() {
     this.getDepartment();
     this.getVisit();
     this.getVisitbyIdDepartment(this.idDepartment);
-
+    this.getDoctor();
   }
 
   /* Observer */
@@ -51,6 +54,13 @@ export class ReservationComponent implements OnInit {
   public getVisitbyIdDepartment(idDepartment?: Department) : void {
     this.visitService.getVisit().subscribe(
       (response: Visit[])=> {this.visits = response},
+      (error: HttpErrorResponse) => {alert(error.message)}
+    )
+  }
+
+  public getDoctor() : void{
+    this.doctorService.getDoctor().subscribe(
+      (response: Doctor[])=> {this.doctors = response},
       (error: HttpErrorResponse) => {alert(error.message)}
     )
   }

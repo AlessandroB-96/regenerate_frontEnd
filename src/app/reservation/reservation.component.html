@@ -87,9 +87,8 @@
             Medico
         </button>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Menu item</a></li>
-            <li><a class="dropdown-item" href="#">Menu item</a></li>
-            <li><a class="dropdown-item" href="#">Menu item</a></li>
+            <li *ngFor="let doctor of doctors"><a class="dropdown-item" >{{doctor?.name}}</a></li>
+
         </ul>
     </div>
 

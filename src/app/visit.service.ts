@@ -15,7 +15,7 @@ export class VisitService {
   constructor( private http: HttpClient ) { }
 
   //Methods
-  //Method that request all the objects Department; its type is Observable
+  //Method that request all the objects Visit; its type is Observable
   public getVisit(): Observable<Visit[]>{
     return this.http.get<Visit[]>(`${this.apiServerUrl}/visit/all`);
 }
