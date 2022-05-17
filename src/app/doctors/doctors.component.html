@@ -1,1 +1,42 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400&display=swap" rel="stylesheet">
 
+<html>
+    
+    <div class="doctors-page">
+
+        <!--- department list --->
+
+        <div class="menu-department">
+            <div *ngFor="let department of departments" class="btn-group button-dep">
+                <ul>
+                    <button type="button" class="btn btn-primary btn-lg department">{{department?.name}}</button>
+                </ul>
+            </div>
+        </div>
+
+        <!--- doctors card --->
+        <div class="container-fluid cont-card" id="main-container">
+            <div class="row align-items-center">
+
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="https://www.sologossip.it/wp-content/uploads/2021/08/dr-nowzaradan.jpg" class="img-fluid rounded-start">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">Nome dottore</h5>
+                          <p class="card-text">faccio dimagrire anche i sassi</p>
+                          <p class="card-text"><small class="text-muted">Nutrizionista</small></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+            </div>
+        </div>
+
+    </div>
+</html>
