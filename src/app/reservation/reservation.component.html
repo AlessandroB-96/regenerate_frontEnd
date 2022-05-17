@@ -5,7 +5,7 @@
 <html>
 <!--- calendar --->
 <div class="calendar" id="calendar">
-    
+
     <div class="month">
         <div class="prev" style="cursor: pointer;">&#10094;</div>
         <div class="next" style="cursor: pointer;">&#10095;</div>
@@ -58,5 +58,46 @@
 
 <!--- side list --->
 
+<div class="side-list">
+
+    <div class="btn-group dropstart">
+        <button id="department" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Reparto
+        </button>
+        <ul class="dropdown-menu" style="cursor: pointer;">
+            <li (click)="departmentClicked(department!.name)" (onChange)="departmentChanged(department!.name)" *ngFor="let department of departments"><a class="dropdown-item"
+                    >{{department?.name}}</a></li>
+        </ul>
+    </div>
+
+    <div class="btn-group dropstart">
+        <button id="visit" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Tipo di visita
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Menu item</a></li>
+
+        </ul>
+    </div>
+
+    <div class="btn-group dropstart">
+        <button id="doctor" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Medico
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Menu item</a></li>
+            <li><a class="dropdown-item" href="#">Menu item</a></li>
+            <li><a class="dropdown-item" href="#">Menu item</a></li>
+        </ul>
+    </div>
+
+    <div class="btn-group dropstart button-sub">
+        <button type="button" class="btn btn-primary submit disabled disabledBtn"> Prenota </button>
+    </div>
+
+</div>
 
 </html>

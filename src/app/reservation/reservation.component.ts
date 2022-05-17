@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DepartmentService } from '../department.service';
+import { Department } from '../department';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-reservation',
@@ -10,7 +13,20 @@ export class ReservationComponent implements OnInit {
   public data: Date = new Date();
   public months = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
 
-  constructor() { }
+  public departments: Department[] = [];
+
+  constructor(private departmentService: DepartmentService) { }
+
+  ngOnInit() {
+    this.getDepartment();
+  }
+
+  public getDepartment() : void{
+    this.departmentService.getDepartment().subscribe(
+      (response: Department[])=> {this.departments = response},
+      (error: HttpErrorResponse) => {alert(error.message)}
+    )
+  }
 
   renderCalendar() {
     // days (month - day -year) 
@@ -22,26 +38,23 @@ export class ReservationComponent implements OnInit {
       for (var i = 1; i < 8; i += 1) {
         var string: string = 'morningHour' + i;
         document.getElementById(string)?.classList.add('closeDay');
-        document.getElementById('morningHours')?.classList.add('disabled');
+        document.getElementById('morningHours')?.classList.add('disabledHours');
         var string: string = 'afternoonHour' + i;
         document.getElementById(string)?.classList.add('closeDay');
-        document.getElementById('afternoonHours')?.classList.add('disabled');
+        document.getElementById('afternoonHours')?.classList.add('disabledHours');
       }
     }
     else {
       for (var i = 1; i < 8; i += 1) {
         var string: string = 'morningHour' + i;
         document.getElementById(string)?.classList.remove('closeDay');
-        document.getElementById('morningHours')?.classList.remove('disabled');
+        document.getElementById('morningHours')?.classList.remove('disabledHours');
         var string: string = 'afternoonHour' + i;
         document.getElementById(string)?.classList.remove('closeDay');
-        document.getElementById('afternoonHours')?.classList.remove('disabled');
+        document.getElementById('afternoonHours')?.classList.remove('disabledHours');
       }
     }
 
-  }
-
-  ngOnInit(): void {
   }
 
 
@@ -76,7 +89,7 @@ export class ReservationComponent implements OnInit {
   //Method that highligts hours clicked by the user in reservation component
   public onClickHours(divId: string) {
 
-    if (!(document.getElementById('morningHours')?.classList.contains('alreadySelected')) && !(document.getElementById('morningHours')?.classList.contains('disabled'))) {
+    if (!(document.getElementById('morningHours')?.classList.contains('alreadySelected')) && !(document.getElementById('morningHours')?.classList.contains('disabledHours'))) {
 
       if (!(document.getElementById(divId)?.classList.contains('selectedHour'))) {
         document.getElementById(divId)?.classList.add('selectedHour');
@@ -93,5 +106,14 @@ export class ReservationComponent implements OnInit {
     }
   }
 
+  //Method that change the name of department in html file
+  public departmentClicked(depName: string){
+    document.getElementById('department')!.innerHTML = depName;
+  }
+
+  //Method that keep tracks of changes in department name
+  public departmentChanged (depName: string){
+    //TODO
+  }
 
 }
