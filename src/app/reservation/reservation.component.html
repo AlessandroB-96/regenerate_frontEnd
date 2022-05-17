@@ -66,7 +66,7 @@
             Reparto
         </button>
         <ul class="dropdown-menu" style="cursor: pointer;">
-            <li (click)="departmentClicked(department!.name)" (onChange)="departmentChanged(department!.name)" *ngFor="let department of departments"><a class="dropdown-item"
+            <li (click)="departmentClicked(department!.name)" *ngFor="let department of departments"><a class="dropdown-item"
                     >{{department?.name}}</a></li>
         </ul>
     </div>
@@ -76,9 +76,8 @@
             aria-expanded="false">
             Tipo di visita
         </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Menu item</a></li>
-
+        <ul class="dropdown-menu" style="cursor: pointer;">
+            <li *ngFor="let visit of visits" ><a class="dropdown-item">{{visit?.name}}</a></li>
         </ul>
     </div>
 

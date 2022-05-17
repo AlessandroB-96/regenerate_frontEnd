@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from '../department.service';
 import { Department } from '../department';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Visit } from '../visit';
+import { VisitService } from '../visit.service';
 
 @Component({
   selector: 'app-reservation',
@@ -14,19 +16,45 @@ export class ReservationComponent implements OnInit {
   public months = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
 
   public departments: Department[] = [];
+  public visits: Visit[] = [];
+ //Department variables
+  public nameDepartment : string | undefined;
 
-  constructor(private departmentService: DepartmentService) { }
+//Visit variables
+  public idDepartment: Department | undefined;
+
+  constructor(private departmentService: DepartmentService, private visitService: VisitService) { }
 
   ngOnInit() {
     this.getDepartment();
+    this.getVisit();
+    this.getVisitbyIdDepartment(this.idDepartment);
+
   }
 
+  /* Observer */
+  //Promise in JS
   public getDepartment() : void{
     this.departmentService.getDepartment().subscribe(
       (response: Department[])=> {this.departments = response},
       (error: HttpErrorResponse) => {alert(error.message)}
     )
   }
+
+  public getVisit() : void {
+    this.visitService.getVisit().subscribe(
+      (response: Visit[])=> {this.visits = response},
+      (error: HttpErrorResponse) => {alert(error.message)}
+    )
+  }
+
+  public getVisitbyIdDepartment(idDepartment?: Department) : void {
+    this.visitService.getVisit().subscribe(
+      (response: Visit[])=> {this.visits = response},
+      (error: HttpErrorResponse) => {alert(error.message)}
+    )
+  }
+
 
   renderCalendar() {
     // days (month - day -year) 
@@ -111,9 +139,5 @@ export class ReservationComponent implements OnInit {
     document.getElementById('department')!.innerHTML = depName;
   }
 
-  //Method that keep tracks of changes in department name
-  public departmentChanged (depName: string){
-    //TODO
-  }
 
 }
