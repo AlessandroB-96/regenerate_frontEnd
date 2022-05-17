@@ -17,7 +17,8 @@
       }
 
       /* Month header */
-      .month {
+      .month,
+      .day {
         padding: 20px 25px;
         width: 100%;
         background: #FFFFFF;
@@ -34,6 +35,7 @@
       .month div {
         color: black;
         font-size: 20px;
+        text-align: center;
         text-transform: uppercase;
         letter-spacing: 3px;
       }
@@ -62,6 +64,7 @@
         text-transform: uppercase;
         letter-spacing: 3px;
       }
+
 
       /* Previous button inside month header */
       .month .prev {
@@ -129,40 +132,87 @@
 
 
       /* Side List */
-
       .side-list {
         position: absolute;
-        left: 904px;
+        width: 491.59px;
+        height: 351px;
+        right: 273px;
         top: 278px;
 
         background: #FFFFFF;
-        border-radius: 24px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 16.2241px;
       }
 
-      .dropdown-item.active,
-      .dropdown-item:active {
-        color: #fff;
-        text-decoration: none;
-        background-color: #8E81DD;
-        border-radius: 24px;
-      }
-
-      .dropdown-menu-macos {
-        display: grid;
-        gap: 0.25rem;
-        padding: 0.5rem;
-
+      .dropstart {
+        padding: 20px 25px;
+        width: 100%;
         background: #FFFFFF;
-        border-radius: 24px;
+        text-align: center;
+        border-radius: 16.2241px;
       }
 
-      .dropdown-menu {
-        position: absolute;
-        width: 438px;
-        height: 266px;
+      .dropstart div {
+        margin: 0;
+        padding: 0;
       }
 
-      .mx-0 {
-        margin-right: 0 !important;
-        margin-left: 0 !important;
+      /* dropdown menu */
+
+      .dropdown-toggle {
+        background: #8E81DD;
+        border-color: #8E81DD;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 16.2241px;
+
+        text-align: center;
+        font-size: 20px;
+        text-align: center;
+        letter-spacing: 2px;
+      }
+
+      .dropdown-toggle:hover {
+        background: #7263d3;
+        border-color: #7263d3;
+      }
+
+      /* left dropdown menu */
+
+      .dropdown-menu{
+        border-radius: 16.2241px;
+        padding: 20px 25px;
+        font-size: 20px;
+        text-align: center;
+        text-align: center;
+      }
+
+      .dropdown-item:hover{
+        border-radius: 16.2241px;
+        background: #e1dff1;
+        border-color: #e1dff1;
+      }
+
+      /* button submit */
+      .submit {
+        background: #93FA91;
+        border-color: #93FA91;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 16.2241px;
+
+        text-align: center;
+        font-size: 20px;
+        text-align: center;
+        color: rgb(25, 70, 25);
+        letter-spacing: 2px;
+      }
+
+      .submit:hover{
+        background: #25e921;
+        border-color: #25e921;
+      }
+
+      /* disbled the button submit  */
+      .disabled{
+        background: #71b364 !important;
+        border-color: #71b364 !important;
       }
