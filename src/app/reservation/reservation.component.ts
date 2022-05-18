@@ -148,6 +148,14 @@ export class ReservationComponent implements OnInit {
   public departmentClicked(depName: string) {
     document.getElementById('department')!.innerHTML = depName;
   }
+  //Method that change the name of department in html file
+  public visitClicked(visName: string) {
+    document.getElementById('visit')!.innerHTML = visName;
+  }
+  //Method that change the name of department in html file
+  public doctorClicked(docName: string) {
+    document.getElementById('doctor')!.innerHTML = docName;
+  }
 
   public isSelected(div: string): void {
     switch (div) {
@@ -161,10 +169,10 @@ export class ReservationComponent implements OnInit {
         document.getElementById('doctor')?.classList.add('selected');
         break;
     }
-    if ((document.getElementById('department')?.classList.contains('selected'))&&(document.getElementById('visit')?.classList.contains('selected'))&&(document.getElementById('doctor')?.classList.contains('selected'))) {
+    if ((document.getElementById('department')?.classList.contains('selected')) && (document.getElementById('visit')?.classList.contains('selected')) && (document.getElementById('doctor')?.classList.contains('selected'))) {
       document.getElementById('submitButton')?.classList.remove('disabled');
     }
-    
+
   }
 
 

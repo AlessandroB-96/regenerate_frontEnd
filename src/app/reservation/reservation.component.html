@@ -77,7 +77,7 @@
             Tipo di visita
         </button>
         <ul class="dropdown-menu" style="cursor: pointer;">
-            <li (click)="isSelected('visit')" *ngFor="let visit of visits" ><a class="dropdown-item">{{visit?.name}}</a></li>
+            <li (click)="visitClicked(visit!.name)" (click)="isSelected('visit')" *ngFor="let visit of visits" ><a class="dropdown-item">{{visit?.name}}</a></li>
         </ul>
     </div>
 
@@ -87,7 +87,7 @@
             Medico
         </button>
         <ul class="dropdown-menu">
-            <li (click)="isSelected('doctor')" *ngFor="let doctor of doctors"><a class="dropdown-item" >{{doctor?.name}}</a></li>
+            <li (click)="doctorClicked(doctor!.name)" (click)="isSelected('doctor')" *ngFor="let doctor of doctors"><a class="dropdown-item" >{{doctor?.name}}</a></li>
 
         </ul>
     </div>
