@@ -124,7 +124,7 @@ export class ReservationComponent implements OnInit {
     document.getElementById('reservation-link')?.classList.add('animation');
   }
 
-  //Method that highligts hours clicked by the user in reservation component
+  //Method that highligts hours clicked by the user in reservation component;integrated with side list selector
   public onClickHours(divId: string) {
 
     if (!(document.getElementById('morningHours')?.classList.contains('alreadySelected')) && !(document.getElementById('morningHours')?.classList.contains('disabledHours'))) {
@@ -133,6 +133,9 @@ export class ReservationComponent implements OnInit {
         document.getElementById(divId)?.classList.add('selectedHour');
         document.getElementById('morningHours')?.classList.add('alreadySelected');
       }
+      if ((document.getElementById('department')?.classList.contains('selected')) && (document.getElementById('visit')?.classList.contains('selected')) && (document.getElementById('doctor')?.classList.contains('selected')) && (document.getElementById('morningHours')?.classList.contains('alreadySelected'))) {
+        document.getElementById('submitButton')?.classList.remove('disabled');
+      }
 
     }
 
@@ -140,7 +143,7 @@ export class ReservationComponent implements OnInit {
 
       document.getElementById('morningHours')?.classList.remove('alreadySelected');
       document.getElementById(divId)?.classList.remove('selectedHour');
-
+      document.getElementById('submitButton')?.classList.add('disabled');
     }
   }
 
@@ -157,6 +160,7 @@ export class ReservationComponent implements OnInit {
     document.getElementById('doctor')!.innerHTML = docName;
   }
 
+  //Method that checks if the three main div of the side list are selected or not and then enables submitButton;integrated with hour selector
   public isSelected(div: string): void {
     switch (div) {
       case 'department':
@@ -169,7 +173,7 @@ export class ReservationComponent implements OnInit {
         document.getElementById('doctor')?.classList.add('selected');
         break;
     }
-    if ((document.getElementById('department')?.classList.contains('selected')) && (document.getElementById('visit')?.classList.contains('selected')) && (document.getElementById('doctor')?.classList.contains('selected'))) {
+    if ((document.getElementById('department')?.classList.contains('selected')) && (document.getElementById('visit')?.classList.contains('selected')) && (document.getElementById('doctor')?.classList.contains('selected')) && (document.getElementById('morningHours')?.classList.contains('alreadySelected'))) {
       document.getElementById('submitButton')?.classList.remove('disabled');
     }
 
