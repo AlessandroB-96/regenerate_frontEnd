@@ -20,10 +20,10 @@ export class ReservationComponent implements OnInit {
   public departments: Department[] = [];
   public visits: Visit[] = [];
   public doctors: Doctor[] = [];
- //Department variables
-  public nameDepartment : string | undefined;
+  //Department variables
+  public nameDepartment: string | undefined;
 
-//Visit variables
+  //Visit variables
   public idDepartment: Department | undefined;
 
   constructor(private departmentService: DepartmentService, private visitService: VisitService, private doctorService: DoctorService) { }
@@ -37,31 +37,31 @@ export class ReservationComponent implements OnInit {
 
   /* Observer */
   //Promise in JS
-  public getDepartment() : void{
+  public getDepartment(): void {
     this.departmentService.getDepartment().subscribe(
-      (response: Department[])=> {this.departments = response},
-      (error: HttpErrorResponse) => {alert(error.message)}
+      (response: Department[]) => { this.departments = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
     )
   }
 
-  public getVisit() : void {
+  public getVisit(): void {
     this.visitService.getVisit().subscribe(
-      (response: Visit[])=> {this.visits = response},
-      (error: HttpErrorResponse) => {alert(error.message)}
+      (response: Visit[]) => { this.visits = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
     )
   }
 
-  public getVisitbyIdDepartment(idDepartment?: Department) : void {
+  public getVisitbyIdDepartment(idDepartment?: Department): void {
     this.visitService.getVisit().subscribe(
-      (response: Visit[])=> {this.visits = response},
-      (error: HttpErrorResponse) => {alert(error.message)}
+      (response: Visit[]) => { this.visits = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
     )
   }
 
-  public getDoctor() : void{
+  public getDoctor(): void {
     this.doctorService.getDoctor().subscribe(
-      (response: Doctor[])=> {this.doctors = response},
-      (error: HttpErrorResponse) => {alert(error.message)}
+      (response: Doctor[]) => { this.doctors = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
     )
   }
 
@@ -145,8 +145,26 @@ export class ReservationComponent implements OnInit {
   }
 
   //Method that change the name of department in html file
-  public departmentClicked(depName: string){
+  public departmentClicked(depName: string) {
     document.getElementById('department')!.innerHTML = depName;
+  }
+
+  public isSelected(div: string): void {
+    switch (div) {
+      case 'department':
+        document.getElementById('department')?.classList.add('selected');
+        break;
+      case 'visit':
+        document.getElementById('visit')?.classList.add('selected');
+        break;
+      case 'doctor':
+        document.getElementById('doctor')?.classList.add('selected');
+        break;
+    }
+    if ((document.getElementById('department')?.classList.contains('selected'))&&(document.getElementById('visit')?.classList.contains('selected'))&&(document.getElementById('doctor')?.classList.contains('selected'))) {
+      document.getElementById('submitButton')?.classList.remove('disabled');
+    }
+    
   }
 
 

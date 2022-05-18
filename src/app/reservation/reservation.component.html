@@ -66,7 +66,7 @@
             Reparto
         </button>
         <ul class="dropdown-menu" style="cursor: pointer;">
-            <li (click)="departmentClicked(department!.name)" *ngFor="let department of departments"><a class="dropdown-item"
+            <li (click)="departmentClicked(department!.name)" (click)="isSelected('department')" *ngFor="let department of departments"><a class="dropdown-item"
                     >{{department?.name}}</a></li>
         </ul>
     </div>
@@ -77,7 +77,7 @@
             Tipo di visita
         </button>
         <ul class="dropdown-menu" style="cursor: pointer;">
-            <li *ngFor="let visit of visits" ><a class="dropdown-item">{{visit?.name}}</a></li>
+            <li (click)="isSelected('visit')" *ngFor="let visit of visits" ><a class="dropdown-item">{{visit?.name}}</a></li>
         </ul>
     </div>
 
@@ -87,13 +87,13 @@
             Medico
         </button>
         <ul class="dropdown-menu">
-            <li *ngFor="let doctor of doctors"><a class="dropdown-item" >{{doctor?.name}}</a></li>
+            <li (click)="isSelected('doctor')" *ngFor="let doctor of doctors"><a class="dropdown-item" >{{doctor?.name}}</a></li>
 
         </ul>
     </div>
 
     <div class="btn-group dropstart button-sub">
-        <button type="button" class="btn btn-primary submit disabled disabledBtn"> Prenota </button>
+        <button id="submitButton" type="button" class="btn btn-primary submit disabled disabledBtn"> Prenota </button>
     </div>
 
 </div>
