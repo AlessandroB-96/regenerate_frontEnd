@@ -1,11 +1,9 @@
       /*    calendar    */
 
       .calendar {
-        position: absolute;
+        /*position: absolute;*/
         width: 491.59px;
         height: 351px;
-        left: 76px;
-        top: 278px;
 
         background: #FFFFFF;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -129,11 +127,10 @@
 
       /* Side List */
       .side-list {
-        position: absolute;
+        /*position: absolute;*/
         width: 491.59px;
         height: 351px;
-        right: 273px;
-        top: 278px;
+
 
         background: #FFFFFF;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -225,4 +222,17 @@
         background: rgb(255, 97, 97) !important;
         transition: 300ms;
         pointer-events: none;
+      }
+
+      /*This way i can center divs at the center of my screen*/
+      .flex-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 0px;
+      }
+      
+      .invisible{
+        width: 491.59px;
+        height: 100px;
       }
