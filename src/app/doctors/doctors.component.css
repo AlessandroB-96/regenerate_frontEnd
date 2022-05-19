@@ -1,15 +1,13 @@
-
 /* department list */
+
 .menu-department {
-  display: -ms-inline-flexbox;
-}
-.menu-department {
-  position: absolute;
+  /* position: absolute; */
   width: 491.59px;
-  height:fit-content;
+  height: fit-content;
   left: 10%;
   top: 30%;
-
+  
+  margin:auto;
   background: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 16.2241px;
@@ -47,7 +45,7 @@ body {
   text-align: center;
   color: rgb(25, 70, 25);
   letter-spacing: 2px;
-  transition: background-color 0.2s;
+  transition: 0.2s;
 
 }
 
@@ -59,13 +57,14 @@ body {
 
 /* doctor list*/
 
-.cont-card  {
-  
-  position: absolute;
+.cont-card {
+  /* position: absolute; */
   width: 770px;
   height: fit-content;
-  left: 48%;
-  top: 20%;
+  left: auto;
+  top: auto;
+
+  margin: auto;
   border-radius: 16.2241px;
 }
 
@@ -78,7 +77,7 @@ body {
   top: 8px;
 }
 
-.card img  {
+.card img {
   padding-top: 12px;
   padding-bottom: 12px;
   border-radius: 16.2241px;
@@ -92,4 +91,13 @@ body {
   background: none;
   box-shadow: none;
   border-color: none;
+}
+
+
+/*This way i can center divs at the center of my screen*/
+.flex-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 0px;
 }

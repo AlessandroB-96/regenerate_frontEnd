@@ -18,6 +18,7 @@
       .month {
         padding: 20px 25px;
         width: 100%;
+
         background: #FFFFFF;
         text-align: center;
         border-radius: 16.2241px;
@@ -126,6 +127,7 @@
       }
 
       /* Side List */
+      
       .side-list {
         /*position: absolute;*/
         width: 491.59px;
