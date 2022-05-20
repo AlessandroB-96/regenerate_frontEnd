@@ -6,6 +6,7 @@ import { Visit } from '../visit';
 import { VisitService } from '../visit.service';
 import { Doctor } from '../doctor';
 import { DoctorService } from '../doctor.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-reservation',
@@ -20,23 +21,22 @@ export class ReservationComponent implements OnInit {
   public departments: Department[] = [];
   public visits: Visit[] = [];
   public doctors: Doctor[] = [];
+  public doctorsByIdDepartment: Doctor[] = [];
   //Department variables
   public nameDepartment: string | undefined;
-
+  public idDepartment: number | undefined;
   //Visit variables
-  public idDepartment: Department | undefined;
+  public visitsByIdDepartment: Visit[] = [];
 
   constructor(private departmentService: DepartmentService, private visitService: VisitService, private doctorService: DoctorService) { }
 
   ngOnInit() {
     this.getDepartment();
-    this.getVisit();
-    this.getVisitbyIdDepartment(this.idDepartment);
-    this.getDoctor();
   }
 
   /* Observer */
   //Promise in JS
+
   public getDepartment(): void {
     this.departmentService.getDepartment().subscribe(
       (response: Department[]) => { this.departments = response },
@@ -51,9 +51,9 @@ export class ReservationComponent implements OnInit {
     )
   }
 
-  public getVisitbyIdDepartment(idDepartment?: Department): void {
-    this.visitService.getVisit().subscribe(
-      (response: Visit[]) => { this.visits = response },
+  public getVisitsbyIdDepartment(idDepartment: number) {
+    this.visitService.getVisitbyIdDepartment(idDepartment).subscribe(
+      (response: Visit[]) => { this.visitsByIdDepartment = response },
       (error: HttpErrorResponse) => { alert(error.message) }
     )
   }
@@ -65,6 +65,21 @@ export class ReservationComponent implements OnInit {
     )
   }
 
+  public getDoctorsByIdDepartment(idDepartment: number) {
+    this.doctorService.getDoctorsByIdDepartment(idDepartment).subscribe(
+      (response: Doctor[]) => { this.doctorsByIdDepartment = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
+    )
+  }
+
+  public getIdDepartmentByDepartmentName(departmentName: string) {
+    this.departmentService.getIdDepartmentByDepartmentName(departmentName).subscribe(
+      (response: number) => { this.idDepartment = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
+    )
+  }
+
+  /* Other methods */
 
   renderCalendar() {
     // days (month - day -year) 
@@ -177,6 +192,23 @@ export class ReservationComponent implements OnInit {
       document.getElementById('submitButton')?.classList.remove('disabled');
     }
 
+  }
+
+/**
+ * It gets the idDepartment by the departmentName, then it removes the disabled class from the doctor
+ * and visit dropdowns, then it gets the doctors by the idDepartment and gets the visits by the
+ * idDepartment.
+ * @param {string} departmentName - string - the name of the department that the user selected from the
+ * dropdown list
+ */
+  public setIdDepartmentNumber(departmentName: string) {
+    this.getIdDepartmentByDepartmentName(departmentName);
+    setTimeout(() => {
+      document.getElementById('doctor')?.classList.remove('disabled');
+      this.getDoctorsByIdDepartment(this.idDepartment!);
+      document.getElementById('visit')?.classList.remove('disabled');
+      this.getVisitsbyIdDepartment(this.idDepartment!);
+    }, 500);
   }
 
 

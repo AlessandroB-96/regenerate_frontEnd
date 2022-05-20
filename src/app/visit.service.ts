@@ -20,7 +20,7 @@ export class VisitService {
     return this.http.get<Visit[]>(`${this.apiServerUrl}/visit/all`);
 }
 
-  public getVisitbyIdDepartment(idDepartment: Department): Observable<Visit[]>{
+  public getVisitbyIdDepartment(idDepartment: number): Observable<Visit[]>{
     return this.http.get<Visit[]>(`${this.apiServerUrl}/visit/find/${idDepartment}`);
   }
 
