@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from '../department.service';
 import { Department } from '../department';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Visit } from '../visit';
 import { VisitService } from '../visit.service';
 import { Doctor } from '../doctor';
 import { DoctorService } from '../doctor.service';
+import { Reservation } from '../reservation';
+import { ReservationService } from '../reservation.service';
 
 @Component({
   selector: 'app-reservation',
@@ -19,24 +21,29 @@ export class ReservationComponent implements OnInit {
 
   public departments: Department[] = [];
   public visits: Visit[] = [];
+  public visit: Visit | undefined;
   public doctors: Doctor[] = [];
+  public doctor : Doctor | undefined;
+  public doctorsByIdDepartment: Doctor[] = [];
   //Department variables
   public nameDepartment: string | undefined;
-
+  public idDepartment: number | undefined;
   //Visit variables
-  public idDepartment: Department | undefined;
+  public visitsByIdDepartment: Visit[] = [];
+  //Reservation variables
+  public reservations: Reservation[] = [];
+  public newReservation: Reservation | undefined;
 
-  constructor(private departmentService: DepartmentService, private visitService: VisitService, private doctorService: DoctorService) { }
+  constructor(private departmentService: DepartmentService, private visitService: VisitService, private doctorService: DoctorService,
+    private reservationService: ReservationService, private http: HttpClient) { }
 
   ngOnInit() {
     this.getDepartment();
-    this.getVisit();
-    this.getVisitbyIdDepartment(this.idDepartment);
-    this.getDoctor();
   }
 
   /* Observer */
   //Promise in JS
+
   public getDepartment(): void {
     this.departmentService.getDepartment().subscribe(
       (response: Department[]) => { this.departments = response },
@@ -51,9 +58,9 @@ export class ReservationComponent implements OnInit {
     )
   }
 
-  public getVisitbyIdDepartment(idDepartment?: Department): void {
-    this.visitService.getVisit().subscribe(
-      (response: Visit[]) => { this.visits = response },
+  public getVisitsbyIdDepartment(idDepartment: number) {
+    this.visitService.getVisitbyIdDepartment(idDepartment).subscribe(
+      (response: Visit[]) => { this.visitsByIdDepartment = response },
       (error: HttpErrorResponse) => { alert(error.message) }
     )
   }
@@ -65,6 +72,35 @@ export class ReservationComponent implements OnInit {
     )
   }
 
+  public getDoctorsByIdDepartment(idDepartment: number) {
+    this.doctorService.getDoctorsByIdDepartment(idDepartment).subscribe(
+      (response: Doctor[]) => { this.doctorsByIdDepartment = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
+    )
+  }
+
+  public getIdDepartmentByDepartmentName(departmentName: string) {
+    this.departmentService.getIdDepartmentByDepartmentName(departmentName).subscribe(
+      (response: number) => { this.idDepartment = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
+    )
+  }
+
+  public getVisitByName(name: string | undefined) {
+    this.visitService.getVisitByName(name).subscribe(
+      (response: Visit) => { this.visit = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
+    )
+  }
+
+  public getDoctorByName(name: string | undefined) {
+    this.doctorService.getDoctorByName(name).subscribe(
+      (response: Doctor) => { this.doctor = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
+    )
+  }
+
+  /* Other methods */
 
   renderCalendar() {
     // days (month - day -year) 
@@ -177,6 +213,85 @@ export class ReservationComponent implements OnInit {
       document.getElementById('submitButton')?.classList.remove('disabled');
     }
 
+  }
+
+  /**
+   * It gets the idDepartment by the departmentName, then it removes the disabled class from the doctor
+   * and visit dropdowns, then it gets the doctors by the idDepartment and gets the visits by the
+   * idDepartment.
+   * @param {string} departmentName - string - the name of the department that the user selected from the
+   * dropdown list
+   */
+  public setIdDepartmentNumber(departmentName: string) {
+    this.getIdDepartmentByDepartmentName(departmentName);
+    setTimeout(() => {
+      document.getElementById('doctor')?.classList.remove('disabled');
+      this.getDoctorsByIdDepartment(this.idDepartment!);
+      document.getElementById('visit')?.classList.remove('disabled');
+      this.getVisitsbyIdDepartment(this.idDepartment!);
+    }, 500);
+  }
+
+  /**
+   * It takes the values of the selected visit, doctor, hour and idHour and puts them into an object
+   * called data.
+   * TODO = Needs to pass this object to back-end to create a new reservation
+   */
+  // public submitReservation() {
+  //   var visit = document.getElementById("visit")?.innerHTML;
+  //   var doctor = document.getElementById("doctor")?.innerHTML;
+  //   var idHour = document.getElementsByClassName('selectedHour')[0].id;
+  //   var hour = document.getElementById(idHour)?.innerHTML;
+
+  //   var data = {
+  //     "id_visit": 1,
+  //     "id_doctor": 1,
+  //     "id_customer": 1,
+  //   }
+  //   console.log(data);
+
+  //   fetch((environment.apiBaseUrl+"/reservation/add"), {
+  //     method: 'PUT',
+  //     body: JSON.stringify(data)
+  //   }).then(function (response) {
+  //     return response.json();
+  //   }).then(function (data) {
+  //     console.log("Data returned from server", data)
+  //   });
+  // }
+
+  public submitReservation() {
+
+    //Theese variables are needed to fetch values of needed attributes inside the DOM
+    var visitName = document.getElementById("visit")?.innerHTML;
+    console.log(visitName);
+    this.getVisitByName(visitName);
+    console.log(this.getVisitByName(visitName));
+
+    var doctorName = document.getElementById("doctor")?.innerHTML;
+    this.getDoctorByName(doctorName);
+
+    setTimeout(() => {
+
+      var visitId: number = this.visit!.idVisit;
+      console.log(visitId);
+      var doctorId: number = this.doctor!.idDoc;
+      console.log(doctorId);
+
+      
+      var idHour = document.getElementsByClassName('selectedHour')[0].id;
+      var hour = document.getElementById(idHour)?.innerHTML;
+
+      //Need to define attributes like this, otherwise won't read their properties
+      this.newReservation = {
+        cF: 1,
+        idVisit: { idVisit: visitId },
+        idDoctor: { idDoc: doctorId},
+      }
+      console.log(this.newReservation);
+
+      this.reservationService.addReservation(this.newReservation).subscribe(reservation => this.reservations.push(reservation))
+    }, 500);
   }
 
 

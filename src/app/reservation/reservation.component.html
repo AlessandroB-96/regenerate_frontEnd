@@ -68,36 +68,36 @@
                 Reparto
             </button>
             <ul class="dropdown-menu" style="cursor: pointer;">
-                <li (click)="departmentClicked(department!.name)" (click)="isSelected('department')"
+                <li (click)="departmentClicked(department!.name)" (click)="isSelected('department')" (click)="setIdDepartmentNumber(department!.name)" 
                     *ngFor="let department of departments"><a class="dropdown-item">{{department?.name}}</a></li>
             </ul>
         </div>
 
         <div class="btn-group dropstart">
-            <button id="visit" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+            <button id="visit" type="button" class="btn btn-secondary dropdown-toggle disabled" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Tipo di visita
             </button>
             <ul class="dropdown-menu" style="cursor: pointer;">
-                <li (click)="visitClicked(visit!.name)" (click)="isSelected('visit')" *ngFor="let visit of visits"><a
-                        class="dropdown-item">{{visit?.name}}</a></li>
+                <li (click)="visitClicked(visit.name!)" (click)="isSelected('visit')" *ngFor="let visit of visitsByIdDepartment"><a
+                        class="dropdown-item">{{visit.name}}</a></li>
             </ul>
         </div>
 
         <div class="btn-group dropstart">
-            <button id="doctor" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+            <button id="doctor" type="button" class="btn btn-secondary dropdown-toggle disabled" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Medico
             </button>
             <ul class="dropdown-menu">
-                <li (click)="doctorClicked(doctor!.name)" (click)="isSelected('doctor')" *ngFor="let doctor of doctors">
-                    <a class="dropdown-item">{{doctor?.name}}</a></li>
+                <li (click)="doctorClicked(doctor.name!)" (click)="isSelected('doctor')" *ngFor="let doctor of doctorsByIdDepartment">
+                    <a class="dropdown-item">{{doctor.name}}</a></li>
 
             </ul>
         </div>
 
         <div class="btn-group dropstart button-sub">
-            <button id="submitButton" type="button" class="btn btn-primary submit disabled disabledBtn"> Prenota
+            <button (click)="submitReservation()" id="submitButton" type="button" class="btn btn-primary submit disabled disabledBtn"> Prenota
             </button>
         </div>
     </div>

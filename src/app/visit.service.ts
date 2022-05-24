@@ -20,8 +20,17 @@ export class VisitService {
     return this.http.get<Visit[]>(`${this.apiServerUrl}/visit/all`);
 }
 
-  public getVisitbyIdDepartment(idDepartment: Department): Observable<Visit[]>{
+  public getVisitbyIdDepartment(idDepartment: number): Observable<Visit[]>{
     return this.http.get<Visit[]>(`${this.apiServerUrl}/visit/find/${idDepartment}`);
+  }
+
+/**
+ * This function takes a string as an argument and returns an Observable of type Visit.
+ * @param {string | undefined} name - string | undefined
+ * @returns An Observable of type Visit
+ */
+  public getVisitByName(name: string | undefined): Observable<Visit>{
+    return this.http.get<Visit>(`${this.apiServerUrl}/visit/getVisit/${name}`)
   }
 
 }
