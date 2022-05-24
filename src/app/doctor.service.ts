@@ -29,5 +29,14 @@ export class DoctorService {
     return this.http.get<Doctor[]>(`${this.apiServerUrl}/doctor/find/${id}`);
   }  
 
+  /**
+   * This function is used to get a doctor by name
+   * @param {string} name - string
+   * @returns Observable<Doctor>
+   */
+  public getDoctorByName(name: string | undefined): Observable<Doctor>{
+    return this.http.get<Doctor>(`${this.apiServerUrl}/doctor/getDoctor/${name}`);
+  }
+
 }
 
