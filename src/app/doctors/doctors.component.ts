@@ -12,35 +12,62 @@ import { Doctor } from '../doctor';
 })
 export class DoctorsComponent implements OnInit {
 
+  /**** VARIABLE ****/
+
   public departments: Department[] = [];
   public doctors: Doctor[] = [];
+  public idDepartment: number | undefined;
+  public doctorsByIdDepa: Doctor[] = [];
 
   constructor(private departmentService: DepartmentService, private doctorService: DoctorService) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getDepartment();
     this.getDoctor();
   }
-  
+
+  /**** OBSERVER ****/
   public getDoctor(): void {
     this.doctorService.getDoctor().subscribe(
-      (response: Doctor[])=> {this.doctors = response},
-      (error: HttpErrorResponse) => {alert(error.message)}
+      (response: Doctor[]) => { this.doctors = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
     )
   }
 
-  public getDepartment() : void {
+  public getDepartment(): void {
     this.departmentService.getDepartment().subscribe(
-      (response: Department[])=> {this.departments = response},
-      (error: HttpErrorResponse) => {alert(error.message)}
+      (response: Department[]) => { this.departments = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
     )
   }
 
-  public departmentClicked(depName: string){
-    document.getElementById('department')!.innerHTML = depName;
+  public getIdDepartmentByDepartmentName(name: string) {
+    this.departmentService.getIdDepartmentByDepartmentName(name).subscribe(
+      (response: number) => { this.idDepartment = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
+    )
   }
 
-  ngAfterViewInit(){
+  public getDoctorsByIdDepartment(id: number) {
+    this.doctorService.getDoctorsByIdDepartment(id).subscribe(
+      (response: Doctor[]) => { this.doctors = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
+    )
+  }
+
+  /**** METHODS ****/
+
+  public departmentClicked(name: string) {
+    this.getIdDepartmentByDepartmentName(name);
+    setTimeout(() => {
+      this.getDoctorsByIdDepartment(this.idDepartment!);
+    }, 500);
+  }
+
+
+  /**** DISPLAY ****/
+
+  ngAfterViewInit() {
     document.body.classList.add('doctors');
     document.getElementById('doctors-link')?.classList.add('selected');
     document.getElementById('doctors-link')?.classList.remove('animation');
