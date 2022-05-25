@@ -23,7 +23,7 @@ export class ReservationComponent implements OnInit {
   public visits: Visit[] = [];
   public visit: Visit | undefined;
   public doctors: Doctor[] = [];
-  public doctor : Doctor | undefined;
+  public doctor: Doctor | undefined;
   public doctorsByIdDepartment: Doctor[] = [];
   //Department variables
   public nameDepartment: string | undefined;
@@ -278,7 +278,7 @@ export class ReservationComponent implements OnInit {
       var doctorId: number = this.doctor!.idDoc;
       console.log(doctorId);
 
-      
+
       var idHour = document.getElementsByClassName('selectedHour')[0].id;
       var hour = document.getElementById(idHour)?.innerHTML;
 
@@ -286,13 +286,22 @@ export class ReservationComponent implements OnInit {
       this.newReservation = {
         cF: 1,
         idVisit: { idVisit: visitId },
-        idDoctor: { idDoc: doctorId},
+        idDoctor: { idDoc: doctorId },
       }
       console.log(this.newReservation);
 
-      this.reservationService.addReservation(this.newReservation).subscribe(reservation => this.reservations.push(reservation))
+      this.reservationService.addReservation(this.newReservation).subscribe(reservation => this.reservations.push(reservation));
+      this.showToast();
+
     }, 500);
+
   }
 
+  public showToast() {
+    var toastLiveExample = document.getElementById('liveToast');
+    var toast = new bootstrap.Toast(toastLiveExample);
+    toast.show();
+      
+  }
 
 }

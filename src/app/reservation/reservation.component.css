@@ -238,3 +238,10 @@
         width: 491.59px;
         height: 100px;
       }
+
+      .toastStyle{
+        background-color: #a0ff9e;
+      }
+      .toastStyle strong{
+        color: #8E81DD;
+      }

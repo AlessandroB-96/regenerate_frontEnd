@@ -68,42 +68,63 @@
                 Reparto
             </button>
             <ul class="dropdown-menu" style="cursor: pointer;">
-                <li (click)="departmentClicked(department!.name)" (click)="isSelected('department')" (click)="setIdDepartmentNumber(department!.name)" 
-                    *ngFor="let department of departments"><a class="dropdown-item">{{department?.name}}</a></li>
+                <li (click)="departmentClicked(department!.name)" (click)="isSelected('department')"
+                    (click)="setIdDepartmentNumber(department!.name)" *ngFor="let department of departments"><a
+                        class="dropdown-item">{{department?.name}}</a></li>
             </ul>
         </div>
 
         <div class="btn-group dropstart">
-            <button id="visit" type="button" class="btn btn-secondary dropdown-toggle disabled" data-bs-toggle="dropdown"
-                aria-expanded="false">
+            <button id="visit" type="button" class="btn btn-secondary dropdown-toggle disabled"
+                data-bs-toggle="dropdown" aria-expanded="false">
                 Tipo di visita
             </button>
             <ul class="dropdown-menu" style="cursor: pointer;">
-                <li (click)="visitClicked(visit.name!)" (click)="isSelected('visit')" *ngFor="let visit of visitsByIdDepartment"><a
-                        class="dropdown-item">{{visit.name}}</a></li>
+                <li (click)="visitClicked(visit.name!)" (click)="isSelected('visit')"
+                    *ngFor="let visit of visitsByIdDepartment"><a class="dropdown-item">{{visit.name}}</a></li>
             </ul>
         </div>
 
         <div class="btn-group dropstart">
-            <button id="doctor" type="button" class="btn btn-secondary dropdown-toggle disabled" data-bs-toggle="dropdown"
-                aria-expanded="false">
+            <button id="doctor" type="button" class="btn btn-secondary dropdown-toggle disabled"
+                data-bs-toggle="dropdown" aria-expanded="false">
                 Medico
             </button>
             <ul class="dropdown-menu">
-                <li (click)="doctorClicked(doctor.name!)" (click)="isSelected('doctor')" *ngFor="let doctor of doctorsByIdDepartment">
-                    <a class="dropdown-item">{{doctor.name}}</a></li>
+                <li (click)="doctorClicked(doctor.name!)" (click)="isSelected('doctor')"
+                    *ngFor="let doctor of doctorsByIdDepartment">
+                    <a class="dropdown-item">{{doctor.name}}</a>
+                </li>
 
             </ul>
         </div>
 
         <div class="btn-group dropstart button-sub">
-            <button (click)="submitReservation()" id="submitButton" type="button" class="btn btn-primary submit disabled disabledBtn"> Prenota
+            <button (click)="submitReservation()" id="submitButton" type="button"
+                class="btn btn-primary submit disabled disabledBtn"> Prenota
             </button>
         </div>
     </div>
 
     <!-- Invisible div for spacing bot-->
     <div class="invisible"></div>
+
+    <!-- Toast that appears when a reservation is created-->
+
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header toastStyle">
+                <img src="../../assets/Check.svg" class="rounded me-2" alt="Toast icon image">
+                <strong class="me-auto">Regenerate</strong>
+                <small>1 secondo fa</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Prenotazione effettuata correttamente!
+            </div>
+        </div>
+    </div>
+
 
 </div>
 
