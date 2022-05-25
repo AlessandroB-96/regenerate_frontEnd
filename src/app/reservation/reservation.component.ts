@@ -232,34 +232,7 @@ export class ReservationComponent implements OnInit {
     }, 500);
   }
 
-  /**
-   * It takes the values of the selected visit, doctor, hour and idHour and puts them into an object
-   * called data.
-   * TODO = Needs to pass this object to back-end to create a new reservation
-   */
-  // public submitReservation() {
-  //   var visit = document.getElementById("visit")?.innerHTML;
-  //   var doctor = document.getElementById("doctor")?.innerHTML;
-  //   var idHour = document.getElementsByClassName('selectedHour')[0].id;
-  //   var hour = document.getElementById(idHour)?.innerHTML;
-
-  //   var data = {
-  //     "id_visit": 1,
-  //     "id_doctor": 1,
-  //     "id_customer": 1,
-  //   }
-  //   console.log(data);
-
-  //   fetch((environment.apiBaseUrl+"/reservation/add"), {
-  //     method: 'PUT',
-  //     body: JSON.stringify(data)
-  //   }).then(function (response) {
-  //     return response.json();
-  //   }).then(function (data) {
-  //     console.log("Data returned from server", data)
-  //   });
-  // }
-
+// Method that create reservations base on hour, date, id of visit and doctor
   public submitReservation() {
 
     //Theese variables are needed to fetch values of needed attributes inside the DOM
@@ -281,12 +254,25 @@ export class ReservationComponent implements OnInit {
 
       var idHour = document.getElementsByClassName('selectedHour')[0].id;
       var hour = document.getElementById(idHour)?.innerHTML;
+      var hourHours: number = +hour!.substring(0,2);
+      var hourMinutes : number = +hour!.substring(3,5);
+      var hourDate : Date = new Date();
+      hourDate.setHours(hourHours);
+      hourDate.setMinutes(hourMinutes);
+      hourDate.setSeconds(0);
+      var day: string = document.getElementById("day")!.innerHTML;
+      var month = document.getElementById("month")!.innerHTML;
+      console.log(this.getMonthNumberButItIsAString(month));
+      var year: string = document.getElementById("year")!.innerHTML;
+      var data: Date = new Date('"' + year + '-' + this.getMonthNumberButItIsAString(month) + '-' + day + '"');
 
       //Need to define attributes like this, otherwise won't read their properties
       this.newReservation = {
         cF: 1,
         idVisit: { idVisit: visitId },
         idDoctor: { idDoc: doctorId },
+        date: data,
+        hour: hourDate,
       }
       console.log(this.newReservation);
 
@@ -301,7 +287,50 @@ export class ReservationComponent implements OnInit {
     var toastLiveExample = document.getElementById('liveToast');
     var toast = new bootstrap.Toast(toastLiveExample);
     toast.show();
-      
+  }
+
+  public getMonthNumberButItIsAString(month: string): string | undefined {
+    switch (month) {
+      case "Gennaio":
+        var monthNumber: string = '01';
+        return monthNumber;
+      case "Febbraio":
+        var monthNumber: string = '02';
+        return monthNumber;
+      case "Marzo":
+        var monthNumber: string = '03';
+        return monthNumber;
+      case "Aprile":
+        var monthNumber: string = '04';
+        return monthNumber;
+      case "Maggio":
+        var monthNumber: string = '05';
+        return monthNumber;
+      case "Giugno":
+        var monthNumber: string = '06';
+        return monthNumber;
+      case "Luglio":
+        var monthNumber: string = '07';
+        return monthNumber;
+      case "Agosto":
+        var monthNumber: string = '08';
+        return monthNumber;
+      case "Settembre":
+        var monthNumber: string = '09';
+        return monthNumber;
+      case "Ottobre":
+        var monthNumber: string = '10';
+        return monthNumber;
+      case "Novembre":
+        var monthNumber: string = '11';
+        return monthNumber;
+      case "Dicembre":
+        var monthNumber: string = '12';
+        return monthNumber;
+      default:
+        return undefined;
+        break;
+    }
   }
 
 }
