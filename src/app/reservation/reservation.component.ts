@@ -274,13 +274,6 @@ export class ReservationComponent implements OnInit {
 
       var idHour = document.getElementsByClassName('selectedHour')[0].id;
       var hour = document.getElementById(idHour)?.innerHTML;
-      var hourHours: number = +hour!.substring(0, 2);
-      var hourMinutes: number = +hour!.substring(3, 5);
-
-      var hourDate: Date = new Date();
-      hourDate.setHours(hourHours);
-      hourDate.setMinutes(hourMinutes);
-      hourDate.setSeconds(0);
 
       var day: string = document.getElementById("day")!.innerHTML;
       var month = document.getElementById("month")!.innerHTML;
@@ -293,7 +286,7 @@ export class ReservationComponent implements OnInit {
         idVisit: { idVisit: visitId },
         idDoctor: { idDoc: doctorId },
         date: data,
-        hour: hourDate,
+        hour: hour,
         idCustomer: { idCustomer: 1 },
       }
 

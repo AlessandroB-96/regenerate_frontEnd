@@ -6,7 +6,7 @@ import { Visit } from "./visit";
 export interface Reservation{
     idReservation?: number;
     date?: Data;
-    hour?: Data;
+    hour?: string;
     idDoctor?: Doctor;
     idVisit: Visit;
     idCustomer?: Customer;
