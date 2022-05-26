@@ -1,4 +1,5 @@
 import { Data } from "@angular/router";
+import { Customer } from "./customer";
 import { Doctor } from "./doctor";
 import { Visit } from "./visit";
 
@@ -8,6 +9,5 @@ export interface Reservation{
     hour?: Data;
     idDoctor?: Doctor;
     idVisit: Visit;
-    idCustomer?: number;
-    cF?: number;
+    idCustomer?: Customer;
 }

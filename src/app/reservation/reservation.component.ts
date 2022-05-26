@@ -8,6 +8,8 @@ import { Doctor } from '../doctor';
 import { DoctorService } from '../doctor.service';
 import { Reservation } from '../reservation';
 import { ReservationService } from '../reservation.service';
+import { CustomerService } from '../customer.service';
+import { Customer } from '../customer';
 
 @Component({
   selector: 'app-reservation',
@@ -33,9 +35,16 @@ export class ReservationComponent implements OnInit {
   //Reservation variables
   public reservations: Reservation[] = [];
   public newReservation: Reservation | undefined;
+  //Customers variables
+  public customers: Customer[] = [];
+  public customer!: Customer;
 
-  constructor(private departmentService: DepartmentService, private visitService: VisitService, private doctorService: DoctorService,
-    private reservationService: ReservationService, private http: HttpClient) { }
+  constructor(private departmentService: DepartmentService,
+    private visitService: VisitService,
+    private doctorService: DoctorService,
+    private reservationService: ReservationService,
+    private http: HttpClient,
+    private customerService: CustomerService) { }
 
   ngOnInit() {
     this.getDepartment();
@@ -96,6 +105,20 @@ export class ReservationComponent implements OnInit {
   public getDoctorByName(name: string | undefined) {
     this.doctorService.getDoctorByName(name).subscribe(
       (response: Doctor) => { this.doctor = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
+    )
+  }
+
+  public getCustomers(): void {
+    this.customerService.getCustomer().subscribe(
+      (response: Customer[]) => { this.customers = response },
+      (error: HttpErrorResponse) => { alert(error.message) }
+    )
+  }
+
+  public getCustomerById(id: number | undefined) {
+    this.customerService.getCustomerById(id).subscribe(
+      (response: Customer) => { this.customer = response },
       (error: HttpErrorResponse) => { alert(error.message) }
     )
   }
@@ -232,7 +255,7 @@ export class ReservationComponent implements OnInit {
     }, 500);
   }
 
-// Method that create reservations base on hour, date, id of visit and doctor
+  // Method that create reservations base on hour, date, id of visit and doctor
   public submitReservation() {
 
     //Theese variables are needed to fetch values of needed attributes inside the DOM
@@ -247,34 +270,32 @@ export class ReservationComponent implements OnInit {
     setTimeout(() => {
 
       var visitId: number = this.visit!.idVisit;
-      console.log(visitId);
       var doctorId: number = this.doctor!.idDoc;
-      console.log(doctorId);
-
 
       var idHour = document.getElementsByClassName('selectedHour')[0].id;
       var hour = document.getElementById(idHour)?.innerHTML;
-      var hourHours: number = +hour!.substring(0,2);
-      var hourMinutes : number = +hour!.substring(3,5);
-      var hourDate : Date = new Date();
+      var hourHours: number = +hour!.substring(0, 2);
+      var hourMinutes: number = +hour!.substring(3, 5);
+
+      var hourDate: Date = new Date();
       hourDate.setHours(hourHours);
       hourDate.setMinutes(hourMinutes);
       hourDate.setSeconds(0);
+
       var day: string = document.getElementById("day")!.innerHTML;
       var month = document.getElementById("month")!.innerHTML;
-      console.log(this.getMonthNumberButItIsAString(month));
       var year: string = document.getElementById("year")!.innerHTML;
       var data: Date = new Date('"' + year + '-' + this.getMonthNumberButItIsAString(month) + '-' + day + '"');
+      
 
       //Need to define attributes like this, otherwise won't read their properties
       this.newReservation = {
-        cF: 1,
         idVisit: { idVisit: visitId },
         idDoctor: { idDoc: doctorId },
         date: data,
         hour: hourDate,
+        idCustomer: { idCustomer: 1 },
       }
-      console.log(this.newReservation);
 
       this.reservationService.addReservation(this.newReservation).subscribe(reservation => this.reservations.push(reservation));
       this.showToast();
